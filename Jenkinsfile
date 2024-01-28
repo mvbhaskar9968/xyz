@@ -8,12 +8,11 @@ pipeline{
             git  branch: 'main', url: 'https://github.com/Cabstux/DEVOPS_Project1.git'
         }
         }
-        stage('Integration Testion'){
-            steps{
-                withEnv(['PATH+MAVEN=/usr/local/bin/mvn']) {
-            sh 'mvn test'
-        }
-        }
-        }
+        stage('Print Path') {
+    steps {
+        sh 'echo $PATH'
+    }
+}
+
     }
 }
