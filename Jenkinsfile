@@ -3,9 +3,9 @@ pipeline{
     agent any 
 
     stages{
-        stage('continous Download'){
+        stage('continouse Download'){
         steps{
-            git  branch: 'main', url:https://github.com/Cabstux/DEVOPS_Project1.git
+            git  branch: 'main', url: 'https://github.com/Cabstux/DEVOPS_Project1.git'
         }
         }
     }
