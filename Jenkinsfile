@@ -10,7 +10,9 @@ pipeline{
         }
         stage('Integration Testion'){
             steps{
-                sh'mvn test'
+                withEnv(['PATH+MAVEN=/usr/local/bin/mvn']) {
+            sh 'mvn test'
+        }
         }
         }
     }
