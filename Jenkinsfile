@@ -17,5 +17,10 @@ pipeline {
                 sh '/usr/local/bin/mvn test'
             }
         }
+        stage('Continouse Build') {
+            steps {
+                sh '/usr/local/bin/mvn clean install'
+            }
+        }
     }
 }
