@@ -38,7 +38,6 @@ pipeline {
         stage('Quality Gate analysis') {
             steps {
                 script {
-                    /* groovylint-disable-next-line NestedBlockDepth */
                     waitForQualityGate abortPipeline: false, credentialsId: 'token-sonarqube'
                 }
             }
