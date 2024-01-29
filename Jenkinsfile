@@ -22,5 +22,16 @@ pipeline {
                 sh '/usr/local/bin/mvn clean install'
             }
         }
+        stage('Static Test Analysis') {
+            steps {
+                script {
+                    //Active static test
+                    /* groovylint-disable-next-line NestedBlockDepth */
+                    withSonarQubeEnv(credentialsId: 'token-sonarqube') {
+                        sh '/usr/local/bin/mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
     }
 }
