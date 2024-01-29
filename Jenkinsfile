@@ -39,10 +39,9 @@ pipeline {
             steps {
                 script {
                     /* groovylint-disable-next-line NestedBlockDepth */
-                    nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', 
-                    file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', 
-                    nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'DEVOPS-Project1', version: '1.0.1'
-                }
+                    nexusArtifactUploader credentialsId: 'auth-nexus',
+                     groupId: 'com.example', nexusUrl: 'localhost:8081', nexusVersion: 'nexus2',
+                     protocol: 'http', repository: 'DEVOPS-Project1', version: '1.0.1'
             }
         }
     }
