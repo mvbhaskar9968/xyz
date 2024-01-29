@@ -14,7 +14,7 @@ public class SpringController {
 
 		val++;
 
-		String result = "Mr. DevOps" + val;
+		String result = "Mr. Sene" + val;
 		return result;
 	}
 }
