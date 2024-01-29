@@ -2,22 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Continouse Download') {
+        stage('Git Download') {
             steps {
                 git  branch: 'main', url: 'https://github.com/Cabstux/DEVOPS_Project1.git'
             }
         }
-        stage('Integration Testion') {
-            steps {
-                sh '/usr/local/bin/mvn verify -DskipUnitTests'
-            }
-        }
-        stage('Unit Testing') {
+        stage('Unit Test') {
             steps {
                 sh '/usr/local/bin/mvn test'
             }
         }
-        stage('Continouse Build') {
+
+        stage('Integration Test') {
+            steps {
+                sh '/usr/local/bin/mvn verify -DskipUnitTests'
+            }
+        }
+        
+        stage('Maven Build') {
             steps {
                 sh '/usr/local/bin/mvn clean install'
             }
@@ -30,6 +32,15 @@ pipeline {
                     withSonarQubeEnv(credentialsId: 'token-sonarqube') {
                         sh '/usr/local/bin/mvn clean package sonar:sonar'
                     }
+                }
+            }
+        }
+        stage('Quality Gate analysis') {
+            steps {
+                script {
+                    //Active static test
+                    /* groovylint-disable-next-line NestedBlockDepth */
+                    waitForQualityGate abortPipeline: false, credentialsId: 'token-sonarqube'
                 }
             }
         }
