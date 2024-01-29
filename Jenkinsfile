@@ -35,13 +35,15 @@ pipeline {
                 }
             }
         }
+        
         stage('Upload artifact to Nexus') {
             steps {
                 script {
                     /* groovylint-disable-next-line NestedBlockDepth */
-                    nexusArtifactUploader credentialsId: 'auth-nexus',
-                     groupId: 'com.example', nexusUrl: 'localhost:8081', nexusVersion: 'nexus2',
-                     protocol: 'http', repository: 'DEVOPS-Project1', version: '1.0.1'
+                    nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', 
+                    file: 'target/Uber.jar', type: 'jar']], credentialsId: 'auth-nexus', groupId: 'com.example', 
+                    nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'DEVOPS-Project1', version: '1.0.1'
+                }
             }
         }
     }
