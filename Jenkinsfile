@@ -35,7 +35,13 @@ pipeline {
                 }
             }
         }
-        
+        stage('Quality Gate analysis') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'token-sonarqube'
+                }
+            }
+        }
         stage('Upload artifact to Nexus') {
             steps {
                 script {

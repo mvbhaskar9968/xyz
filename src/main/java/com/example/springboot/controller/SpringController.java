@@ -11,16 +11,9 @@ public class SpringController {
 	@GetMapping(value = "/")
 	public String getValue() {
 
-//		LocalDateTime date = LocalDateTime.now();
-//
-//		Integer year = date.getYear();
-//		Integer month = date.getMonthValue();
-//		Integer day = date.getDayOfMonth();
-//		Integer hour = date.getHour();
-//		Integer min = date.getMinute();
-//		Integer sec = date.getSecond();
+
 		val++;
-//		Integer count = year + month + day + hour + min + sec + 1;
+
 		String result = "Mr. DevOps" + val;
 		return result;
 	}
