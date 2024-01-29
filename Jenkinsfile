@@ -38,9 +38,18 @@ pipeline {
         stage('Quality Gate analysis') {
             steps {
                 script {
-                    //Active static test
                     /* groovylint-disable-next-line NestedBlockDepth */
                     waitForQualityGate abortPipeline: false, credentialsId: 'token-sonarqube'
+                }
+            }
+        }
+        stage('Upload artifact to Nexus') {
+            steps {
+                script {
+                    /* groovylint-disable-next-line NestedBlockDepth */
+                    nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', 
+                    file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', 
+                    nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'DEVOPS-Project1', version: '1.0.1'
                 }
             }
         }
